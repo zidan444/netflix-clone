@@ -1,30 +1,27 @@
-import React from "react";
-import Navbar from "./components/Navbar";
-import Banner from "./components/Banner";
-import Row from "./components/Row";
-import "./App.css";
+import { useState } from 'react'
+import Navbar from './components/Navbar/Navbar.jsx'
+import Banner from './components/Banner/Banner.jsx'
+import RowPost from './components/RowPost/RowPost.jsx'
+import { action, comedy, documentories, horror, originals, romance } from "./urls.jsx"
+
+import "./App.css"
+
 
 function App() {
-  const API_KEY = "19a99a6839e30d8b377a8985d1e32a53";
 
   return (
-    <div className="app">
-      <Navbar />
-      <Banner />
-      <Row
-        title="Popular on Netflix"
-        fetchUrl={`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=1`}
-      />
-      <Row
-        title="Trending Now"
-        fetchUrl={`https://api.themoviedb.org/3/trending/movie/week?api_key=${API_KEY}`}
-      />
-      <Row
-        title="Top Rated"
-        fetchUrl={`https://api.themoviedb.org/3/movie/top_rated?api_key=${API_KEY}&language=en-US&page=1`}
-      />
-    </div>
-  );
+    <>
+    <Navbar/>
+    <Banner/>
+    <RowPost url={originals} title='Netflix Originals'/>
+    <RowPost url={action} title='Action' isSmall/>
+    <RowPost url={comedy} title='Comedy' isSmall/>
+    <RowPost url={horror} title='Horror' isSmall/>
+    <RowPost url={romance} title='Romance' isSmall/>
+    <RowPost url={documentories} title='Documentaries' isSmall/>
+      
+    </>
+  )
 }
 
-export default App;
+export default App
